@@ -35,5 +35,46 @@ class BankAccountTests {
 			assertTrue(true);
 		}
 	}
-
+	
+	@Test
+	void testSimpleWithdraw() {
+		//1. Setup Objects
+		
+		BankAccount testAccount = new BankAccount();
+		
+		//2. Call the method being tested
+		testAccount.deposit(25);
+		testAccount.withdraw(25);
+		//3. Use assertions to verify results
+		assertEquals(0.0, testAccount.getBalance(), 0.01);	
+	}
+	
+	@Test
+	void testNegativeWithdraw() {
+		//1. Setup Objects	
+		BankAccount testAccount = new BankAccount();
+		
+		//2. Call the method being tested
+		try {
+			testAccount.withdraw(-25);
+			fail();
+		} catch (IllegalArgumentException e) {
+			//we expect to end up here, -25 is a bad input
+			assertTrue(true);
+		}
+	}
+	
+	@Test
+	void testAmountLargerThanBalance() {
+		BankAccount testAccount = new BankAccount();
+		
+		//2. Call the method being tested
+		try {
+			testAccount.withdraw(25);
+			fail();
+		} catch (IllegalArgumentException e) {
+			//we expect to end up here, -25 is a bad input
+			assertTrue(true);
+		}
+	}
 }
