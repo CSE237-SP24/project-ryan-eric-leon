@@ -77,4 +77,34 @@ class BankAccountTests {
 			assertTrue(true);
 		}
 	}
+	
+	@Test
+	void testSimpleTransfer() {
+		BankAccount testAccount1 = new BankAccount();
+		BankAccount testAccount2 = new BankAccount();
+		
+		testAccount1.deposit(10);
+		testAccount1.transfer(10, testAccount2);
+		
+		assertEquals(0.0, testAccount1.getBalance(), 0.01);
+		assertEquals(10.0, testAccount2.getBalance(), 0.01);
+		
+	}
+	
+	@Test
+	void testNegativeTransfer() {
+		BankAccount testAccount1 = new BankAccount();
+		BankAccount testAccount2 = new BankAccount();
+		
+		testAccount1.deposit(25);
+		testAccount1.transfer(25, testAccount2);
+		
+		try {
+			testAccount1.transfer(-25, testAccount2);
+			fail();
+		} catch (IllegalArgumentException e) {
+			//we expect to end up here, -25 is a bad input
+			assertTrue(true);
+		}
+	}
 }
