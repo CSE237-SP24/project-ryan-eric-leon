@@ -32,4 +32,14 @@ public class BankAccount {
 		this.balance -= amount;
 		
 	}
+	
+	public void transfer(double amount, BankAccount other) {
+		if (amount < 0) {
+			throw new IllegalArgumentException("Amount must be positive");
+		}
+		
+		this.withdraw(amount);
+		other.deposit(amount);
+		
+	}
 }
