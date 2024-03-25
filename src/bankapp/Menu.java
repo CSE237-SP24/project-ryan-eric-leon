@@ -1,11 +1,13 @@
 package bankapp;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Menu {
 
 	private Scanner in;
-	private BankAccount account;
+	private HashMap<String, BankAccount> accounts;
+	private BankAccount currentAccount;
 	
 	//not tested
 	public static void main(String[] args) {
@@ -18,7 +20,9 @@ public class Menu {
 	//Constructor
 	public Menu() {
 		this.in = new Scanner(System.in);
-		this.account = new BankAccount();
+		this.currentAccount = new BankAccount();
+		this.accounts = new HashMap<>();
+		this.accounts.put("root", currentAccount);
 	}
 	
 	//Code that just displays stuff - no tests needed
@@ -26,6 +30,21 @@ public class Menu {
 		System.out.println("How much money do you want to deposit?");
 	}
 	
+	public void switchAccounts(String name) {
+		if (!(this.accounts.containsKey(name))) {
+			System.out.println("There is no account with that name.");
+			return;
+		}
+
+		this.currentAccount = this.accounts.get(name);;
+	}
+	
+	public void insertAccount(String name, double balance) {
+		BankAccount bankAccount = new BankAccount();
+		bankAccount.deposit(balance);
+		this.accounts.put(name, bankAccount);
+		
+	}
 	//Code that gets user input
 	//No tests needed...for now (probably discuss in future class)
 	public double getValidUserInput() {
@@ -40,11 +59,11 @@ public class Menu {
 	
 	//Does work - needs tests
 	public void processingUserSelection(double amount) {
-		account.deposit(amount);
-		System.out.println("Your balance is now: " + account.getBalance());
+		currentAccount.deposit(amount);
+		System.out.println("Your balance is now: " + currentAccount.getBalance());
 	}
 	
 	public BankAccount getAccount() {
-		return account;
+		return currentAccount;
 	}
 }
