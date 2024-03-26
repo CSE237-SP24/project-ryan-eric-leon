@@ -15,4 +15,4 @@ Issues:
 We are quite satisfied with our progress so far. For the functions we wrote, we created corresponding unit tests in the test folder to ensure they work as expected, which they did. We also simulated being users to ensure the instructions are clear and that users can navigate our app effectively.
 
 Commands needed to compile our code:
-Attached is the file that can be used to run our code.
+The 'script.sh' file can be used to automatically compile and run our code.
