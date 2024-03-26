@@ -14,5 +14,4 @@ We are also considering adding a transaction history feature to allow users to v
 Issues:
 We are quite satisfied with our progress so far. For the functions we wrote, we created corresponding unit tests in the test folder to ensure they work as expected, which they did. We also simulated being users to ensure the instructions are clear and that users can navigate our app effectively.
 
-Commands needed to compile our code:
-The 'script.sh' file can be used to automatically compile and run our code.
+Commands needed to compile our code: Since README does not support direct file attachments, if you wish to run our code, please navigate to our development branch. There, you should find a file named 'script.sh'. Download this file to run our code from it. Alternatively, you can navigate to the file through this like https://github.com/CSE237-SP24/project-ryan-eric-leon/blob/development/script.sh
