@@ -19,4 +19,4 @@ We are quite satisfied with our progress so far. For the functions we wrote, we 
 
 **Commands needed to compile our code**:
 
-Since README does not support direct file attachments, if you wish to run our code, please clone this development branch. Here, you should find a file named 'script.sh'. Run this script from terminal to automatically compile and run our bankapp program.
+If you wish to run our code, please clone this development branch. Here, you should find a file named 'script.sh'. Run this script from terminal to automatically compile and run our bankapp program.
