@@ -6,7 +6,7 @@ Add description of what happened each iteration
 
 **Things completed in this iteration**:
 
-We added features that allow users to manage their accounts similarly to a bank app. Users can deposit, and withdraw money. They can switch between accounts if they have multiple ones and transfer money between them. For users without an account, there is an option to create one. We've provided clear instructions on the different commands to use and how to use them. Additionally, we wrote a function that enables user data to persist after closing the program. Their data is stored in a file using the file processor command we learned in class. We also wrote unit tests for our functions and created a script in the command line for users to run our code.
+We added features that allow users to manage their accounts similarly to a bank app. Users can deposit and withdraw money. They can switch between accounts if they have multiple ones and transfer money between them. For users without an account, there is an option to create one. We've provided clear instructions on the different commands to use and how to use them. Additionally, we wrote a function that enables user data to persist after closing the program. Their data is stored in a file using the file processor command we learned in class. We also wrote unit tests for our functions and created a script in the command line for users to run our code.
 
 **Things intended to be completed in the next iteration**:
 
