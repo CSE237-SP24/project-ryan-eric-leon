@@ -15,7 +15,7 @@ We are also considering adding a transaction history feature to allow users to v
 
 **Issues**:
 
-We are quite satisfied with our progress so far. For the functions we wrote, we created corresponding unit tests in the test folder to ensure they work as expected, which they did. We also simulated being users to ensure the instructions are clear and that users can navigate our app effectively. Also, the default ('root') account will be initialized to 0 balance each time the user runs the program, regardless of the accounts file. This is an intended feature to ensure the unit tests work properly.
+We are quite satisfied with our progress so far. For the functions we wrote, we created corresponding unit tests in the test folder to ensure they work as expected, which they did. We also simulated being users to ensure the instructions are clear and that users can navigate our app effectively. Also, the default ('root') account will be initialized to 0 balance each time the user runs the program, regardless of the accounts file. This is an intended feature to ensure the unit tests work properly. The new account's name must be a single word.
 
 **Commands needed to compile our code**:
 
