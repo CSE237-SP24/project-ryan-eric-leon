@@ -49,7 +49,9 @@ public class MenuGUI {
 
 		createDepositBtn();
 		createWithdrawBtn();
-
+		
+		createTransferBtn();
+		
 		createAccountBtns();
 
 		frame.add(panel);
@@ -103,6 +105,23 @@ public class MenuGUI {
 		subPanel.add(withdrawBtn);
 		panel.add(subPanel);
 	}
+	
+	private void createTransferBtn() {
+	    JPanel subPanel = new JPanel();
+	    subPanel.setLayout(new GridLayout(1, 4));
+	    subPanel.setPreferredSize(new Dimension(500, 30));
+
+	    JSpinner spinner = createSpinner();
+	    JLabel receiverAccountLabel = new JLabel("Receiver Account →");
+	    JTextField receiverAccountField = new JTextField();
+	    TransferBtn transferBtn = new TransferBtn(spinner, receiverAccountField, this);
+
+	    subPanel.add(spinner);
+	    subPanel.add(receiverAccountLabel);
+	    subPanel.add(receiverAccountField);
+	    subPanel.add(transferBtn);
+	    panel.add(subPanel);
+	}
 
 	public void createAccountBtns() {
 		JPanel subPanel = new JPanel();
@@ -140,4 +159,5 @@ public class MenuGUI {
 	public JFrame getFrame() {
 		return frame;
 	}
+	
 }

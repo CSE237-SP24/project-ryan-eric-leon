@@ -187,7 +187,7 @@ public class Menu {
 	public BankAccount getAccount() {
 		return this.currentAccount;
 	}
-
+	
 	public HashMap<String, BankAccount> getAllAccounts() {
 		return this.accounts;
 	}
