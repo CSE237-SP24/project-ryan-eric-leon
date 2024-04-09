@@ -6,7 +6,6 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
-
 	private Scanner in;
 	private HashMap<String, BankAccount> accounts;
 	private BankAccount currentAccount;
@@ -27,76 +26,7 @@ public class Menu {
 		// it will start at 0 balance each time the program runs
 		this.accounts.put("root", currentAccount);
 	}
-
-	public void saveAccounts() {
-		try {
-			fileProcessor.writeAccounts(accounts);
-			System.out.println("Finished saving accounts info.");
-		} catch (FileNotFoundException e) {
-			System.err.println("Didn't found file to write to.");
-		}
-	}
-
-	private void inputProcessLoop(String userInput) {
-		while (!userInput.equals("quit")) {
-			switch (userInput) {
-			case "details":
-				this.displayingOptions();
-				break;
-			case "deposit":
-				System.out.println("Please enter the amount of money you wish to deposit: ");
-				double depositAmount = this.getValidUserInput();
-				this.processDeposit(depositAmount);
-				break;
-			case "withdraw":
-				System.out.println("Please enter the amount of money you wish to withdraw: ");
-				double withdrawAmount = this.getValidUserInput();
-				this.processWithdraw(withdrawAmount);
-				break;
-			case "transfer":
-				System.out.println("Please enter the amount of money you wish to transfer: ");
-				double transferAmount = this.getValidUserInput();
-				System.out.println("Please enter the account you wish to transfer money to: ");
-				String receiverAccountString = this.in.next();
-				processTransfer(transferAmount, receiverAccountString);
-				break;
-			case "insert":
-				System.out.println("Please enter the name of the account you wish to make: ");
-				String newAccountName = this.in.next();
-				processInsert(newAccountName);
-				break;
-			case "switch":
-				System.out.println(
-						"Please enter the name of the account you wish to switch to (default account is 'root'): ");
-				String accountName = this.in.next();
-				processSwitch(accountName);
-				break;
-			default:
-				System.err.println("Invalid command. Please try again.");
-				break;
-			}
-			System.out.println(); // extra new line for better visualization
-			System.out.println("Please let me know what do you want to do.");
-			userInput = this.in.next();
-		}
-		System.out.println("Bye.");
-	}
-
-	// Code that just displays stuff - no tests needed
-	private void displayingOptions() {
-		System.out.println(
-				"If you wish to deposit money into your account, you can enter 'deposit' and follow the guidelines afterwards.");
-		System.out.println(
-				"If you wish to withdraw money into your account, you can enter 'withdraw' and follow the guidelines afterwards.");
-		System.out.println(
-				"If you wish to transfer money between accounts, you can enter 'transfer' and follow the guidelines afterwards.");
-		System.out.println(
-				"If you wish to make a new account, you can enter 'insert' and follow the guidelines afterwards.");
-		System.out.println(
-				"If you wish to switch between your accounts, you can enter 'switch' and follow the guidelines afterwards.");
-		System.out.println("Existing accounts include: " + this.accounts.keySet());
-	}
-
+	
 	public void insertAccount(String name) {
 		if (this.accounts.containsKey(name)) {
 			throw new IllegalArgumentException("This account already exists.");
@@ -112,7 +42,15 @@ public class Menu {
 		this.currentAccount = this.accounts.get(name);
 	}
 
-	// ensures user input
+	public void saveAccounts() {
+		try {
+			fileProcessor.writeAccounts(accounts);
+			System.out.println("Finished saving accounts info.");
+		} catch (FileNotFoundException e) {
+			System.err.println("Didn't found file to write to.");
+		}
+	}
+	
 	private double getValidUserInput() {
 		double amount = 0; // has to initialize it to a value to avoid error message at return
 		boolean invalid = true; // assume invalid at beginning to enter the loop

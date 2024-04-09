@@ -63,7 +63,7 @@ public class MenuGUI {
 		subPanel.setLayout(new GridLayout(1, 2));
 		subPanel.setPreferredSize(new Dimension(500, 30));
 
-		accountNameLabel = new JLabel("Account Name: 'root'"); // root is the default name when user opens
+		accountNameLabel = new JLabel("Current Account: 'root'"); // root is the default name when user opens
 		balanceLabel = new JLabel("Current Balance: $" + menu.getAccount().getBalance());
 
 		subPanel.add(accountNameLabel);
@@ -145,7 +145,7 @@ public class MenuGUI {
 	}
 
 	public void updateAccountName(String name) {
-		accountNameLabel.setText("Account Name: '" + name + "'");
+		accountNameLabel.setText("Current Account: '" + name + "'");
 	}
 
 	public Menu getMenu() {
