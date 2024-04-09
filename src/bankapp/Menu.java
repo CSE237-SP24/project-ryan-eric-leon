@@ -14,8 +14,8 @@ public class Menu {
 
 	public static void main(String[] args) {
 		Menu mainMenu = new Menu();
-		
-		MenuGUI menuGUI = new MenuGUI();
+
+		MenuGUI menuGUI = new MenuGUI(mainMenu.currentAccount);
 		System.out.println(
 				"Please let me know what do you want to do. You can enter 'details' for more detailed commands to use or 'quit' to exit.");
 		String userInput = mainMenu.in.next();
