@@ -20,3 +20,24 @@ We are quite satisfied with our progress so far. For the functions we wrote, we 
 **Commands needed to compile our code**:
 
 If you wish to run our code, please navigate to our development branch. There, you should find a file named 'script.sh'. Clone our development branch and run this bash script to automatically compile and run our bankapp program. Alternatively, you can navigate to that branch through this link: https://github.com/CSE237-SP24/project-ryan-eric-leon/blob/development/
+
+
+# **Iteration 2**:
+
+Things completed in this iteration:
+
+Based on the feedback we received, we noted that some methods in our menu were too lengthy. We also received suggestions to improve user instructions. With these points in mind, we decided to implement a GUI (Graphical User Interface) for the functions developed in iteration 1. This change eliminated the need for extensive while loops and detailed instructions, as the GUI is self-explanatory and aesthetically pleasing. Consequently, some functions in our original menu class became redundant and were removed.
+
+Things intended to be completed in the next iteration:
+
+With the introduction of the GUI for deposit, withdrawal, transfer, etc., we utilized straightforward functions in our BankAccounts class, rendering the processXXX functions in our Menu class obsolete. We have yet to remove these functions as they are integral to many unit tests in our tests folder. In iteration 3, we plan to address this issue and decide whether to delete these redundant functions and their associated tests or to slightly modify the GUI methods to utilize the processXXX methods instead of the basic XXX methods. Although we lean towards the second, a thorough discussion is scheduled for later. Additionally, as we have enabled users to persist their accounts and funds after closing the app, we are considering implementing the transaction history feature, which was initially planned for this iteration but not executed.
+
+Issues:
+
+There weren't any other issues that we were aware of at least. The only one would be there were some functions that weren't doing anything in the Menu class. We are fully aware of it, and we will get them fixed in iteration 3. 
+
+
+Commands needed to compile our code:
+
+If you wish to run our code, please navigate to our development branch. There, you should find a file named 'script.sh'. Clone our development branch and run this bash script to automatically compile and run our bankapp program. Alternatively, you can navigate to that branch through this link: https://github.com/CSE237-SP24/project-ryan-eric-leon/blob/development/
+
