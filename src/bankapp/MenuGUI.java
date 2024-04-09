@@ -50,7 +50,7 @@ public class MenuGUI {
 		createDepositBtn();
 		createWithdrawBtn();
 
-		createCreateAccountBtn();
+		createAccountBtns();
 
 		frame.add(panel);
 		frame.setVisible(true);
@@ -61,22 +61,12 @@ public class MenuGUI {
 		subPanel.setLayout(new GridLayout(1, 2));
 		subPanel.setPreferredSize(new Dimension(500, 30));
 
-		createAccountNameLabel(subPanel);
-		createBalanceLabel(subPanel);
-
-		panel.add(subPanel);
-	}
-
-	private void createAccountNameLabel(JPanel subPanel) {
-		accountNameLabel = new JLabel("Account Name: root"); // root is the default name when user opens
-
-		subPanel.add(accountNameLabel);
-	}
-
-	private void createBalanceLabel(JPanel subPanel) {
+		accountNameLabel = new JLabel("Account Name: 'root'"); // root is the default name when user opens
 		balanceLabel = new JLabel("Current Balance: $" + menu.getAccount().getBalance());
 
+		subPanel.add(accountNameLabel);
 		subPanel.add(balanceLabel);
+		panel.add(subPanel);
 	}
 
 	private JSpinner createSpinner() {
@@ -114,24 +104,29 @@ public class MenuGUI {
 		panel.add(subPanel);
 	}
 
-	public void createCreateAccountBtn() {
+	public void createAccountBtns() {
 		JPanel subPanel = new JPanel();
 		subPanel.setLayout(new GridLayout(2, 2));
 		subPanel.setPreferredSize(new Dimension(500, 60));
 
 		JTextField accountNameField = new JTextField();
 		CreateAccountBtn createAccountBtn = new CreateAccountBtn(accountNameField, menu);
+		SwitchAccountBtn switchAccountBtn = new SwitchAccountBtn(accountNameField, this);
 
 		subPanel.add(new JLabel("Account Name:"));
 		subPanel.add(accountNameField);
 		subPanel.add(createAccountBtn);
-		subPanel.add(createAccountBtn);
+		subPanel.add(switchAccountBtn);
 
 		panel.add(subPanel);
 	}
 
 	public void updateBalance() {
 		balanceLabel.setText("Current Balance: $" + menu.getAccount().getBalance());
+	}
+
+	public void updateAccountName(String name) {
+		accountNameLabel.setText("Account Name: '" + name + "'");
 	}
 
 	public Menu getMenu() {
