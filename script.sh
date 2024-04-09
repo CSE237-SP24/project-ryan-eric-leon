@@ -8,6 +8,6 @@ javac bankapp/*.java
 echo "compiled successfully"
 
 #java to run the code
-java bankapp.Menu
+java bankapp.MenuGUI
 
 cd ..
