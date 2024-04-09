@@ -2,6 +2,7 @@ package bankapp;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 public class MenuGUI {
@@ -40,31 +42,41 @@ public class MenuGUI {
 
 	public void runGUI() {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setSize(400, 300);
+		frame.setSize(600, 400);
 		frame.setLocationRelativeTo(null);
 
-		createAccountNameLabel();
-		createBalanceLabel();
+		createLabels();
 
 		createDepositBtn();
 		createWithdrawBtn();
+
+		createCreateAccountBtn();
 
 		frame.add(panel);
 		frame.setVisible(true);
 	}
 
-	private void createAccountNameLabel() {
-		accountNameLabel = new JLabel("Account Name: root"); // root is the default name when user opens
-		accountNameLabel.setPreferredSize(new Dimension(150, 30));
+	private void createLabels() {
+		JPanel subPanel = new JPanel();
+		subPanel.setLayout(new GridLayout(1, 2));
+		subPanel.setPreferredSize(new Dimension(500, 30));
 
-		panel.add(accountNameLabel);
+		createAccountNameLabel(subPanel);
+		createBalanceLabel(subPanel);
+
+		panel.add(subPanel);
 	}
 
-	private void createBalanceLabel() {
-		balanceLabel = new JLabel("Current Balance: $" + menu.getAccount().getBalance());
-		balanceLabel.setPreferredSize(new Dimension(150, 30));
+	private void createAccountNameLabel(JPanel subPanel) {
+		accountNameLabel = new JLabel("Account Name: root"); // root is the default name when user opens
 
-		panel.add(balanceLabel);
+		subPanel.add(accountNameLabel);
+	}
+
+	private void createBalanceLabel(JPanel subPanel) {
+		balanceLabel = new JLabel("Current Balance: $" + menu.getAccount().getBalance());
+
+		subPanel.add(balanceLabel);
 	}
 
 	private JSpinner createSpinner() {
@@ -73,28 +85,57 @@ public class MenuGUI {
 		// with a step size of 0.01 which is 1 cent
 		SpinnerNumberModel model = new SpinnerNumberModel(0.0, -Double.MAX_VALUE, Double.MAX_VALUE, 0.01);
 		JSpinner spinner = new JSpinner(model);
-		spinner.setPreferredSize(new Dimension(80, 30));
 		return spinner;
 	}
 
 	private void createDepositBtn() {
+		JPanel subPanel = new JPanel();
+		subPanel.setLayout(new GridLayout(1, 2));
+		subPanel.setPreferredSize(new Dimension(250, 30));
+
 		JSpinner spinner = createSpinner();
 		DepositBtn depositBtn = new DepositBtn(spinner, this);
 
-		panel.add(spinner);
-		panel.add(depositBtn);
+		subPanel.add(spinner);
+		subPanel.add(depositBtn);
+		panel.add(subPanel);
 	}
 
 	private void createWithdrawBtn() {
+		JPanel subPanel = new JPanel();
+		subPanel.setLayout(new GridLayout(1, 2));
+		subPanel.setPreferredSize(new Dimension(250, 30));
+
 		JSpinner spinner = createSpinner();
 		WithdrawBtn withdrawBtn = new WithdrawBtn(spinner, this);
 
-		panel.add(spinner);
-		panel.add(withdrawBtn);
+		subPanel.add(spinner);
+		subPanel.add(withdrawBtn);
+		panel.add(subPanel);
+	}
+
+	public void createCreateAccountBtn() {
+		JPanel subPanel = new JPanel();
+		subPanel.setLayout(new GridLayout(2, 2));
+		subPanel.setPreferredSize(new Dimension(500, 60));
+
+		JTextField accountNameField = new JTextField();
+		CreateAccountBtn createAccountBtn = new CreateAccountBtn(accountNameField, menu);
+
+		subPanel.add(new JLabel("Account Name:"));
+		subPanel.add(accountNameField);
+		subPanel.add(createAccountBtn);
+		subPanel.add(createAccountBtn);
+
+		panel.add(subPanel);
 	}
 
 	public void updateBalance() {
 		balanceLabel.setText("Current Balance: $" + menu.getAccount().getBalance());
+	}
+
+	public Menu getMenu() {
+		return menu;
 	}
 
 	public BankAccount getAccount() {
