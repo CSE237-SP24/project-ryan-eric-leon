@@ -12,30 +12,13 @@ public class Menu {
 	private BankAccount currentAccount;
 	private FileProcessor fileProcessor;
 
-	public static void main(String[] args) {
-		Menu mainMenu = new Menu();
-
-		MenuGUI menuGUI = new MenuGUI(mainMenu.currentAccount);
-		System.out.println(
-				"Please let me know what do you want to do. You can enter 'details' for more detailed commands to use or 'quit' to exit.");
-		String userInput = mainMenu.in.next();
-		mainMenu.inputProcessLoop(userInput);
-		mainMenu.in.close();
-
-		try {
-			mainMenu.getFileProcessor().writeAccounts(mainMenu.accounts);
-		} catch (FileNotFoundException e) {
-			System.err.println("Didn't found file to write to.");
-		}
-	}
-
 	// Constructor
 	public Menu() {
 		this.in = new Scanner(System.in);
 		this.currentAccount = new BankAccount();
 		try {
 			this.fileProcessor = new FileProcessor("accounts_file/accounts.txt");
-			this.accounts = getFileProcessor().readAccounts();
+			this.accounts = fileProcessor.readAccounts();
 		} catch (FileNotFoundException e) {
 			// didn't found file so use empty hash map
 			this.accounts = new HashMap<>();
@@ -43,6 +26,15 @@ public class Menu {
 		// default to a special account 'root'
 		// it will start at 0 balance each time the program runs
 		this.accounts.put("root", currentAccount);
+	}
+
+	public void saveAccounts() {
+		try {
+			fileProcessor.writeAccounts(accounts);
+			System.out.println("Finished saving accounts info.");
+		} catch (FileNotFoundException e) {
+			System.err.println("Didn't found file to write to.");
+		}
 	}
 
 	private void inputProcessLoop(String userInput) {
