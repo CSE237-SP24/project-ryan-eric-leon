@@ -34,8 +34,7 @@ With the introduction of the GUI for deposit, withdrawal, transfer, etc., we uti
 
 Issues:
 
-There weren't any other issues that we were aware of at least. The only one would be there were some functions that weren't doing anything in the Menu class. We are fully aware of it, and we will get them fixed in iteration 3. 
-
+The default ('root') account will be initialized to 0 balance each time the user runs the program, regardless of the accounts file. The new account's name must be a single word. For numeric input fields, if non-numeric values were entered, the GUI would ignore it and perform the button action using the last valid input. (For example, if you deposit 5 dollars then try to deposit 'some string', you would end up depositing another 5 dollars.) There weren't any other issues that we were aware of at least. The only one would be there were some functions that weren't doing anything in the Menu class. We are fully aware of it, and we will get them fixed in iteration 3.
 
 Commands needed to compile our code:
 
