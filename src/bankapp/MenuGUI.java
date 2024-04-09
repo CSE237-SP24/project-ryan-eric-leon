@@ -110,7 +110,7 @@ public class MenuGUI {
 		subPanel.setPreferredSize(new Dimension(500, 60));
 
 		JTextField accountNameField = new JTextField();
-		CreateAccountBtn createAccountBtn = new CreateAccountBtn(accountNameField, menu);
+		CreateAccountBtn createAccountBtn = new CreateAccountBtn(accountNameField, this);
 		SwitchAccountBtn switchAccountBtn = new SwitchAccountBtn(accountNameField, this);
 
 		subPanel.add(new JLabel("Account Name:"));

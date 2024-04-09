@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 //stack overflow: https://stackoverflow.com/questions/40619661/how-to-use-actionlistener-to-print-values-in-the-textarea-in-my-calculator
 public class CreateAccountBtn extends JButton {
 
-	public CreateAccountBtn(JTextField textField, Menu menu) {
+	public CreateAccountBtn(JTextField textField, MenuGUI gui) {
 		this.setText("Create");
 
 		this.addActionListener(new ActionListener() {
@@ -20,13 +20,14 @@ public class CreateAccountBtn extends JButton {
 				String name = textField.getText().trim();
 				if (!name.isEmpty()) {
 					try {
-						menu.insertAccount(name);
-						JOptionPane.showMessageDialog(null, "Account '" + name + "' created successfully.");
+						gui.getMenu().insertAccount(name);
+						JOptionPane.showMessageDialog(gui.getFrame(), "Account '" + name + "' created successfully.");
 					} catch (IllegalArgumentException ex) {
-						JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(gui.getFrame(), ex.getMessage(), "Error",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Account name cannot be empty.", "Error",
+					JOptionPane.showMessageDialog(gui.getFrame(), "Account name cannot be empty.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
