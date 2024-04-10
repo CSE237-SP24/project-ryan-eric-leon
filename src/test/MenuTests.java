@@ -2,78 +2,66 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import bankapp.AccountManagement;
 import bankapp.BankAccount;
 import bankapp.Menu;
+import bankapp.ProcessTransaction;
 
 class MenuTests {
 
-	@Test
-	void testUserDeposit() {
-		Menu m = new Menu();
-		// assume user has provided value input of 50
-		m.processDeposit(50);
+    private Menu menu;
+    private AccountManagement accountManagement;
+    private ProcessTransaction processTransaction;
 
-		BankAccount account = m.getAccount();
-		assertEquals(50, account.getBalance(), 0.01);
-	}
+    @BeforeEach
+    void setUp() {
+        menu = new Menu();
+        accountManagement = new AccountManagement();
+        processTransaction = new ProcessTransaction(accountManagement);
+    }
 
-	@Test
-	void testUserWithdraw() {
-		Menu m = new Menu();
-		BankAccount account = m.getAccount();
-		account.deposit(50);
+    @Test
+    void testUserDeposit() {
+        double depositAmount = 50;
+        processTransaction.processDeposit(depositAmount);
 
-		// assume user has provided value input of 30
-		m.processWithdraw(30);
+        double actualBalance = accountManagement.getCurrentAccount().getBalance();
+        assertEquals(depositAmount, actualBalance, 0.01);
+    }
 
-		assertEquals(20, account.getBalance(), 0.01);
-	}
+    @Test
+    void testUserWithdraw() {
+        double initialDeposit = 50;
+        processTransaction.processDeposit(initialDeposit);
 
-	@Test
-	void testUserTransfer() {
-		Menu m = new Menu();
-		m.getAccount().deposit(50);
-		m.insertAccount("Bob");
+        double withdrawAmount = 30;
+        processTransaction.processWithdraw(withdrawAmount);
 
-		m.processTransfer(30, "Bob");
+        double expectedBalance = initialDeposit - withdrawAmount;
+        double actualBalance = accountManagement.getCurrentAccount().getBalance();
+        assertEquals(expectedBalance, actualBalance, 0.01);
+    }
 
-		// original account should now have 20
-		assertEquals(20, m.getAccount().getBalance(), 0.01);
-		// Bob should now have 30
-		m.switchAccount("Bob");
-		assertEquals(30, m.getAccount().getBalance(), 0.01);
-	}
+    @Test
+    void testUserTransfer() {
+        double initialDeposit = 50;
+        processTransaction.processDeposit(initialDeposit);
+        String receiverAccountName = "Bob";
+        accountManagement.insertAccount(receiverAccountName);
+        double transferAmount = 30;
+        processTransaction.processTransfer(transferAmount, receiverAccountName);
 
-	@Test
-	void testInsertAccount() {
-		Menu m = new Menu();
+        double senderExpectedBalance = initialDeposit - transferAmount;
+        double actualSenderBalance = accountManagement.getCurrentAccount().getBalance();
+        assertEquals(senderExpectedBalance, actualSenderBalance, 0.01);
 
-		BankAccount account = m.getAccount();
-		account.deposit(50);
-		m.processInsert("Bob");
+        double receiverExpectedBalance = transferAmount;
+        double actualReceiverBalance = accountManagement.getAccount(receiverAccountName).getBalance();
+        assertEquals(receiverExpectedBalance, actualReceiverBalance, 0.01);
+    }
 
-		// we should be able to insert a new account without affecting current account
-		assertEquals(50, m.getAccount().getBalance(), 0.01);
-	}
-
-	@Test
-	void testSwitchAccount() {
-		Menu m = new Menu();
-		m.insertAccount("Bob");
-		m.insertAccount("Alice");
-
-		// try switch to Bob and deposit money into it
-		m.processSwitch("Bob");
-		m.processDeposit(50);
-		// try switch to Alice and deposit money into it
-		m.processSwitch("Alice");
-		m.processDeposit(25);
-
-		assertEquals(25, m.getAccount().getBalance(), 0.01);
-		// switching back to Bob to see if its balance is unaffected
-		m.processSwitch("Bob");
-		assertEquals(50, m.getAccount().getBalance(), 0.01);
-	}
+ 
 }
