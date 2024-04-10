@@ -109,4 +109,25 @@ class BankAccountTests {
 			assertTrue(true);
 		}
 	}
+	
+	@Test
+	void testEmptyTransaction() {
+		BankAccount testAccount = new BankAccount();
+		
+		assertEquals(0, testAccount.getTransactionSize(), 0.01);
+	}
+	
+	@Test 
+	void testProperTransactionList(){
+		BankAccount testAccount = new BankAccount();
+		BankAccount testAccount2 = new BankAccount();
+		testAccount.deposit(25);
+		testAccount.withdraw(15);
+		testAccount.transfer(10, testAccount2);
+		
+		assertEquals("Deposit: 25.0", testAccount.getTransactionList().get(0));
+		assertEquals("Withdraw: 15.0", testAccount.getTransactionList().get(1));
+		assertEquals("Deposit: 10.0", testAccount2.getTransactionList().get(0));
+		assertEquals("Withdraw: 10.0", testAccount.getTransactionList().get(2));
+	}
 }
