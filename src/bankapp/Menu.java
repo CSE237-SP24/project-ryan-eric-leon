@@ -140,6 +140,7 @@ public class Menu {
 			String accountName = in.next();
 			accountManagement.switchAccount(accountName);
 			System.out.println("Switched to account: " + accountName);
+			showBalance();
 		} catch (IllegalArgumentException e) {
 			System.err.println(e.getLocalizedMessage() + " Switch account failed.");
 		}
