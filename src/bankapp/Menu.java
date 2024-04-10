@@ -47,6 +47,9 @@ public class Menu {
 			case "details":
 				displayingOptions();
 				break;
+			case "balance":
+				showBalance();
+				break;
 			case "deposit":
 				processTransaction("deposit");
 				break;
@@ -84,6 +87,10 @@ public class Menu {
 		System.out.println("If you wish to switch between your accounts, you can enter 'switch'.");
 		System.out.println("If you wish to get transaction history, you can enter 'history'.");
 		System.out.println("Existing accounts include: " + accountManagement.getAllAccounts().keySet());
+	}
+
+	private void showBalance() {
+		System.out.println("Current balance: " + accountManagement.getCurrentAccount().getBalance());
 	}
 
 	private void processTransaction(String type) {
