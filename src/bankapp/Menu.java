@@ -12,7 +12,7 @@ public class Menu {
 
 	public Menu() {
 		this.in = new Scanner(System.in);
-		this.accountManagement = new AccountManagement();
+		this.accountManagement = new AccountManagement("accounts_file/accounts.txt");
 		this.processTransaction = new ProcessTransaction(accountManagement);
 		this.userInputValidity = new UserInputValidity(in);
 	}

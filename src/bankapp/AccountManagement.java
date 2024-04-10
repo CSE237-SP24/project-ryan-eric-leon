@@ -11,9 +11,14 @@ public class AccountManagement {
 
 	public AccountManagement() {
 		this.currentAccount = new BankAccount();
+		this.accounts = new HashMap<>();
+	}
+
+	public AccountManagement(String pathToFile) {
+		this.currentAccount = new BankAccount();
 		try {
-			this.fileProcessor = new FileProcessor("accounts_file/accounts.txt");
-			this.accounts = getFileProcessor().readAccounts();
+			this.fileProcessor = new FileProcessor(pathToFile);
+			this.accounts = fileProcessor.readAccounts();
 		} catch (FileNotFoundException e) {
 			// didn't found file so use empty hash map
 			this.accounts = new HashMap<>();
