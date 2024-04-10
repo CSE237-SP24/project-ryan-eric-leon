@@ -14,7 +14,8 @@ public class Menu {
 		this.in = new Scanner(System.in);
 		this.accountManagement = new AccountManagement("accounts_file/accounts.txt");
 		this.processTransaction = new ProcessTransaction(accountManagement);
-		this.userInputValidity = new UserInputValidity(in);
+		// set the single transaction limit to be less than a million dollars
+		this.userInputValidity = new UserInputValidity(in, 1000000.0);
 	}
 
 	public static void main(String[] args) {
