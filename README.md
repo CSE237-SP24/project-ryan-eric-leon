@@ -1,7 +1,3 @@
-# base-project
-
-Add description of what happened each iteration
-
 # **Iteration 1**:
 
 **Things completed in this iteration**:
@@ -26,15 +22,17 @@ If you wish to run our code, please navigate to our development branch. There, y
 
 **Things completed in this iteration**:
 
-placeholder
+> Based on the feedback we received, we noted that some methods in our menu were too lengthy. We also received suggestions to improve user instructions. With these points in mind, we originally decided to implement a GUI to eliminate the need for extensive while loops and wordy instruction in our code. **This was against the philosophy of this project, thus we canceled this idea.** Branches named 'menu-gui-*' are NOT merged into the development branch.
+
+To address the suggestions we received, we first tried to refactor our Menu class by splitting it into a few classes: Menu, AccountManagement, UserInputValidity, ProcessTransaction. As someone suggested, to mimic a realistic bank app, we limit each single transaction to less than $1,000,000. To make our menu more intuitive, we implemented a command to display the balance of the current account as well as a feature to automatically display the balance upon switching accounts. The user can see a recent transaction history via command. We also wrote unit tests for the classes. Note that Menu & UserInputValidity are two classes only used for getting and processing user input via the command line. Thus, we do not have tests for these two.
 
 **Things intended to be completed in the next iteration**:
 
-placeholder
+We may have to improve our unit tests for Iteration 3. We are unsure about the code cleanness of the refactored Menu class, so we will take actions according to the feedback we receive from this iteration. Ideas we have for some new features include allowing user to create password protected accounts and allowing them change their account password.
 
 **Issues**:
 
-The default ('root') account will be initialized to 0 balance each time the user runs the program, regardless of the accounts file. The new account's name must be a single word.
+Our design of the bank app ensures the default ('root') account will be initialized to 0 balance each time the user runs the program, regardless of the accounts file. The new account's name must be one string (i.e. no spaces in between, you can use underscore or dash if you like).
 
 **Commands needed to compile our code**:
 
