@@ -81,6 +81,7 @@ public class Menu {
 	}
 
 	private void displayingOptions() {
+		System.out.println("If you wish to see your account's current balance, you can enter 'balance'.");
 		System.out.println("If you wish to deposit money into your account, you can enter 'deposit'.");
 		System.out.println("If you wish to withdraw money from your account, you can enter 'withdraw'.");
 		System.out.println("If you wish to transfer money between accounts, you can enter 'transfer'.");
