@@ -26,12 +26,7 @@ public class Transactions {
 			System.out.println(transaction);
 		}
 	}
-	
-	public void remove() {
-		int removeIndex = this.transactionHistory.size() - 1;
-		this.transactionHistory.remove(removeIndex);
-		this.transactionHistory.remove(removeIndex - 1);
-	}
+		
 	
 	public int getSize() {
 		return this.transactionHistory.size();
