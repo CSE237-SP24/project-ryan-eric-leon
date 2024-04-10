@@ -48,6 +48,9 @@ public class Menu {
                 case "switch":
                     processSwitch();
                     break;
+                case "history":
+                	processHistory();
+                	break;
                 default:
                     System.err.println("Invalid command. Please try again.");
                     break;
@@ -65,6 +68,7 @@ public class Menu {
         System.out.println("If you wish to transfer money between accounts, you can enter 'transfer'.");
         System.out.println("If you wish to make a new account, you can enter 'insert'.");
         System.out.println("If you wish to switch between your accounts, you can enter 'switch'.");
+        System.out.println("If you wish to get transaction history, you can enter 'history'.");
         System.out.println("Existing accounts include: " + accountManagement.getAllAccounts().keySet());
     }
 
@@ -100,5 +104,9 @@ public class Menu {
         String accountName = in.next();
         accountManagement.switchAccount(accountName);
         System.out.println("Switched to account: " + accountName);
+    }
+    
+    private void processHistory() {
+    	accountManagement.getCurrentAccount().getTransactionHistory();
     }
 }
