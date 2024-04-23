@@ -38,7 +38,7 @@ public class Menu {
 	public void start() {
 		System.out.println(
 				"Please let me know what do you want to do. You can enter 'details' for more detailed commands to use or 'quit' to exit.");
-		String userInput = in.next();
+		String userInput = in.nextLine();
 		inputProcessLoop(userInput);
 	}
 
@@ -75,7 +75,7 @@ public class Menu {
 			}
 			System.out.println();
 			System.out.println("Please let me know what do you want to do.");
-			userInput = in.next();
+			userInput = in.nextLine();
 		}
 		System.out.println("Bye.");
 	}
@@ -116,7 +116,7 @@ public class Menu {
 			System.out.println("Please enter the amount of money you wish to transfer: ");
 			double amount = userInputValidity.getValidUserInput();
 			System.out.println("Please enter the account you wish to transfer money to: ");
-			String receiverAccountString = in.next();
+			String receiverAccountString = in.nextLine();
 			processTransaction.processTransfer(amount, receiverAccountString);
 			System.out.println("Transfer complete. Your current balance is: "
 					+ accountManagement.getCurrentAccount().getBalance());
@@ -128,9 +128,18 @@ public class Menu {
 	private void processInsert() {
 		try {
 			System.out.println("Please enter the name of the account you wish to create: ");
-			String newAccountName = in.next();
-			accountManagement.insertAccount(newAccountName);
-			System.out.println("Account created successfully.");
+			String newAccountName = in.nextLine();
+
+			System.out.println("Enter a password for the account (press enter for no password): ");
+			String password = in.nextLine();
+
+			if (password.isEmpty()) {
+				accountManagement.insertAccount(newAccountName);
+				System.out.println("Account created successfully without a password.");
+			} else {
+				accountManagement.insertAccountWithPassword(newAccountName, password);
+				System.out.println("Account created successfully with a password.");
+			}
 		} catch (IllegalArgumentException e) {
 			System.err.println(e.getLocalizedMessage() + " Insert new account failed.");
 		}
@@ -139,8 +148,12 @@ public class Menu {
 	private void processSwitch() {
 		try {
 			System.out.println("Please enter the name of the account you wish to switch to: ");
-			String accountName = in.next();
-			accountManagement.switchAccount(accountName);
+			String accountName = in.nextLine();
+
+			System.out.println("Enter a password for the account (press enter for no password): ");
+			String password = in.nextLine();
+
+			accountManagement.switchAccountWithPassword(accountName, password);
 			System.out.println("Switched to account: " + accountName);
 			showBalance();
 		} catch (IllegalArgumentException e) {

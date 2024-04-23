@@ -23,7 +23,7 @@ public class AccountManagement {
 			// didn't found file so use empty hash map
 			this.accounts = new HashMap<>();
 		}
-		// default to a special account 'root'
+		// default to a special account 'root' which has no password
 		// it will start at 0 balance each time the program runs
 		this.accounts.put("root", currentAccount);
 	}
@@ -36,6 +36,14 @@ public class AccountManagement {
 		accounts.put(name, bankAccount);
 	}
 
+	public void insertAccountWithPassword(String name, String password) {
+		if (accounts.containsKey(name)) {
+			throw new IllegalArgumentException("This account already exists.");
+		}
+		BankAccount bankAccount = new BankAccount(password);
+		accounts.put(name, bankAccount);
+	}
+
 	public void switchAccount(String name) {
 		if (!accounts.containsKey(name)) {
 			throw new IllegalArgumentException("There is no account with that name.");
@@ -43,10 +51,25 @@ public class AccountManagement {
 		currentAccount = accounts.get(name);
 	}
 
+	public void switchAccountWithPassword(String name, String password) {
+		if (!accounts.containsKey(name)) {
+			throw new IllegalArgumentException("There is no account with that name.");
+		}
+
+		BankAccount targetAccount = accounts.get(name);
+		if (!targetAccount.checkPassword(password)) {
+			throw new IllegalArgumentException("The password does not match.");
+		}
+
+		currentAccount = targetAccount;
+	}
+
 	public BankAccount getCurrentAccount() {
 		return currentAccount;
 	}
 
+	// getAccount() is only used to get the receiver's account
+	// when trying to transfer money, so we shouldn't check password here
 	public BankAccount getAccount(String accountName) {
 		return accounts.get(accountName);
 	}

@@ -6,11 +6,29 @@ public class BankAccount {
 
 	private double balance;
 	private Transactions transactions;
-	
+	private String password;
+
 	// Constructors - not tested
 	public BankAccount() {
 		this.balance = 0;
 		this.transactions = new Transactions();
+		// a no-password account essentially has an empty string as password
+		this.password = "";
+	}
+
+	// constructor for BankAccount with password
+	public BankAccount(String password) {
+		this.balance = 0;
+		this.transactions = new Transactions();
+		this.password = password;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public boolean checkPassword(String possiblePassword) {
+		return this.password.equals(possiblePassword);
 	}
 
 	// public method doing some work - lots of tests
@@ -27,12 +45,12 @@ public class BankAccount {
 	public double getBalance() {
 		return this.balance;
 	}
-	
-	public int getTransactionSize(){
+
+	public int getTransactionSize() {
 		return this.transactions.getSize();
 	}
-	
-	public List<String> getTransactionList(){
+
+	public List<String> getTransactionList() {
 		return this.transactions.getTransactionList();
 	}
 
@@ -57,7 +75,7 @@ public class BankAccount {
 		other.deposit(amount);
 
 	}
-	
+
 	public void getTransactionHistory() {
 		this.transactions.printTransactions();
 	}

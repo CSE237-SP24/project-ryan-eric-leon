@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -109,22 +110,54 @@ class BankAccountTests {
 			assertTrue(true);
 		}
 	}
-	
+
+	@Test
+	void testCorrectPassword() {
+		String password = "test-password";
+
+		BankAccount testAccount = new BankAccount(password);
+
+		assertTrue(testAccount.checkPassword("test-password"));
+	}
+
+	@Test
+	void testWrongPassword() {
+		String password = "test-password";
+
+		BankAccount testAccount = new BankAccount(password);
+
+		assertFalse(testAccount.checkPassword("wrong-password"));
+	}
+
+	@Test
+	// a no-password account essentially has an empty string as password
+	void testNoPassword() {
+		String emptyPassword = "";
+
+		BankAccount testAccountA = new BankAccount();
+		BankAccount testAccountB = new BankAccount(emptyPassword);
+		BankAccount testAccountC = new BankAccount("test-password");
+
+		assertTrue(testAccountA.checkPassword(emptyPassword));
+		assertTrue(testAccountA.getPassword().equals(testAccountB.getPassword()));
+		assertFalse(testAccountA.getPassword().equals(testAccountC.getPassword()));
+	}
+
 	@Test
 	void testEmptyTransaction() {
 		BankAccount testAccount = new BankAccount();
-		
+
 		assertEquals(0, testAccount.getTransactionSize(), 0.01);
 	}
-	
-	@Test 
-	void testProperTransactionList(){
+
+	@Test
+	void testProperTransactionList() {
 		BankAccount testAccount = new BankAccount();
 		BankAccount testAccount2 = new BankAccount();
 		testAccount.deposit(25);
 		testAccount.withdraw(15);
 		testAccount.transfer(10, testAccount2);
-		
+
 		assertEquals("Deposit: 25.0", testAccount.getTransactionList().get(0));
 		assertEquals("Withdraw: 15.0", testAccount.getTransactionList().get(1));
 		assertEquals("Deposit: 10.0", testAccount2.getTransactionList().get(0));
