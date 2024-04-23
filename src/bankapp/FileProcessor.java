@@ -41,10 +41,12 @@ public class FileProcessor {
 		HashMap<String, BankAccount> accounts = new HashMap<>();
 		while (this.in.hasNextLine()) {
 			String[] accountDetails = this.in.nextLine().split(",");
-			if (accountDetails.length == 2) {
+			if (accountDetails.length >= 2) {
 				String accountName = accountDetails[0];
 				double balance = Double.parseDouble(accountDetails[1]);
-				BankAccount account = new BankAccount();
+				// ensure no password accounts get initialized correctly
+				String password = accountDetails.length > 2 ? accountDetails[2] : "";
+				BankAccount account = new BankAccount(password);
 				account.deposit(balance);
 				accounts.put(accountName, account);
 			}
@@ -56,10 +58,9 @@ public class FileProcessor {
 		this.out = new PrintWriter(this.accountsFile);
 		for (String accountName : accounts.keySet()) {
 			BankAccount account = accounts.get(accountName);
-			out.println(accountName + "," + account.getBalance());
+			out.println(accountName + "," + account.getBalance() + "," + account.getPassword());
 		}
 		out.close();
 	}
-	
 
 }

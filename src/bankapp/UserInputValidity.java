@@ -17,6 +17,7 @@ public class UserInputValidity {
 		while (true) {
 			try {
 				amount = in.nextDouble();
+				in.nextLine(); // consume the leftover newline character
 				if (amount < 0) {
 					System.err.println("Invalid value! Please enter a non-negative number.");
 				} else if (amount >= limit) {
