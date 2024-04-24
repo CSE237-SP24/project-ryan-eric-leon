@@ -127,4 +127,54 @@ class AccountManagementTests {
 		}
 	}
 
+	@Test
+	public void testAddAccountPassword() {
+		String accountName = "TestAccount";
+
+		accountManagement.insertAccount(accountName);
+		accountManagement.switchAccount(accountName);
+		accountManagement.changeAccountPassword("", "new-password");
+
+		assertEquals(accountManagement.getCurrentAccount().getPassword(), "new-password");
+	}
+
+	@Test
+	public void testRemoveAccountPassword() {
+		String accountName = "TestAccount";
+		String password = "test-password";
+
+		accountManagement.insertAccountWithPassword(accountName, password);
+		accountManagement.switchAccountWithPassword(accountName, password);
+		accountManagement.changeAccountPassword(password, "");
+
+		assertTrue(accountManagement.getCurrentAccount().getPassword().isEmpty());
+	}
+
+	@Test
+	public void testChangeAccountPassword() {
+		String accountName = "TestAccount";
+		String password = "test-password";
+
+		accountManagement.insertAccountWithPassword(accountName, password);
+		accountManagement.switchAccountWithPassword(accountName, password);
+		accountManagement.changeAccountPassword(password, "new-password");
+
+		assertEquals(accountManagement.getCurrentAccount().getPassword(), "new-password");
+	}
+
+	@Test
+	public void testChangeAccountWrongOldPassword() {
+		String accountName = "TestAccount";
+		String password = "test-password";
+
+		accountManagement.insertAccountWithPassword(accountName, password);
+		accountManagement.switchAccountWithPassword(accountName, password);
+		try {
+			accountManagement.changeAccountPassword("wrong-password", "new-password");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
+		}
+	}
+
 }

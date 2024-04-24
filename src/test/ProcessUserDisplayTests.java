@@ -31,7 +31,8 @@ public class ProcessUserDisplayTests {
 	void testShowOptions() {
 		processUserDisplay.showOptions();
 
-		assertEquals("Commands: options, accounts, balance, deposit, withdraw, transfer, insert, switch, history, quit",
+		assertEquals(
+				"COMMANDS: options, accounts, balance, deposit, withdraw, transfer, insert, switch, change_password, history, quit",
 				out.toString().trim());
 	}
 
@@ -44,7 +45,7 @@ public class ProcessUserDisplayTests {
 				+ "balance: check the balance of your account.\n"
 				+ "deposit, withdraw: deposit/withdraw money to/from your account.\n"
 				+ "transfer: transfer money from your account to another account.\n" + "insert: create a new account.\n"
-				+ "switch: switch between your accounts.\n"
+				+ "switch: switch between your accounts.\n" + "change_password: change the password of your account.\n"
 				+ "history: display the transaction history of your account.\n" + "quit: terminate the bank app.";
 
 		assertEquals(testOutput, out.toString().replace("\r\n", "\n").trim());

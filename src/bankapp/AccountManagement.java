@@ -64,6 +64,10 @@ public class AccountManagement {
 		currentAccount = targetAccount;
 	}
 
+	public void changeAccountPassword(String oldPassword, String newPassword) {
+		currentAccount.setPassword(oldPassword, newPassword);
+	}
+
 	public BankAccount getCurrentAccount() {
 		return currentAccount;
 	}

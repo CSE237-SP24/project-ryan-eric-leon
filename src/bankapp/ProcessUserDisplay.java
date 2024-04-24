@@ -8,7 +8,7 @@ public class ProcessUserDisplay {
 
 	public void showOptions() {
 		System.out.println(
-				"Commands: options, accounts, balance, deposit, withdraw, transfer, insert, switch, history, quit");
+				"COMMANDS: options, accounts, balance, deposit, withdraw, transfer, insert, switch, change_password, history, quit");
 	}
 
 	public void optionsDescriptions() {
@@ -19,6 +19,7 @@ public class ProcessUserDisplay {
 		System.out.println("transfer: transfer money from your account to another account.");
 		System.out.println("insert: create a new account.");
 		System.out.println("switch: switch between your accounts.");
+		System.out.println("change_password: change the password of your account.");
 		System.out.println("history: display the transaction history of your account.");
 		System.out.println("quit: terminate the bank app.");
 	}
