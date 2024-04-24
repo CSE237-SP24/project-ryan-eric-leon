@@ -38,3 +38,19 @@ Our design of the bank app ensures the default ('root') account will be initiali
 **Commands needed to compile our code**:
 
 If you wish to run our code, please clone this development branch. Here, you should find a file named 'script.sh'. Run this bash script to automatically compile and run our bankapp program.
+
+
+
+# **Iteration 3**:
+
+**Things completed in this iteration**:
+
+We deleted some branches that are no longer in use to clean up our repo. We tried to refactor our Menu class even further by introducing 2 new classes: ProcessUserDisplay and ProcessUserInput (replacing the previous UserInputValidity class). Based on suggestions we received, we created more unit tests overall to achive better test coverage. The user can create accounts protected by password now. If they want to switch to an account, they need to give the correct password. They can also change the password of the current account, as long as they input the correct old password. The password, just like the account balance, is able to persist after our Bank App closes. Note that our Menu class is only used for command line interactions. Thus, we do not have tests for it.
+
+**Issues**:
+
+Our design of the bank app ensures the default ('root') account will be initialized to 0 balance and empty password each time the user runs the program, regardless of the accounts file. The passwords are not hashed when stored, so anyone with access to the 'accounts.txt' file can see all the plain text passwords. We think this is acceptable for the sake of this project. The new account's name must be one string (i.e. no spaces in between, you can use underscore or dash if you like). This restriction also applies to the password and the command option. This is why there is an underscore in the 'change_password' option.
+
+**Commands needed to compile our code**:
+
+If you wish to run our code, please clone this development branch. Here, you should find a file named 'script.sh'. Run this bash script to automatically compile and run our bankapp program.
