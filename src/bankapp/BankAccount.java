@@ -76,7 +76,7 @@ public class BankAccount {
 
 	}
 
-	public void getTransactionHistory() {
+	public void printTransactionHistory() {
 		this.transactions.printTransactions();
 	}
 }

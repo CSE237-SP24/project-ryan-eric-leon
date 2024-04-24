@@ -2,16 +2,12 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.Test;
 
-import bankapp.ProcessUserDisplay;
-import bankapp.ProcessUserInput;
 import bankapp.Transactions;
 
 class TransactionsTest {
@@ -20,7 +16,7 @@ class TransactionsTest {
 	@Test
 	void testSizeTransaction() {
 		Transactions testTransaction = new Transactions();
-		
+
 		assertEquals(0, testTransaction.getSize(), 0);
 
 		testTransaction.addTransaction("Deposit", 10);
@@ -36,26 +32,26 @@ class TransactionsTest {
 
 		assertEquals("Deposit: 10.0", testTransaction.getTransactionList().get(0));
 	}
-	
+
 	@Test
 	void testWithdrawalListTransaction() {
 		Transactions testTransaction = new Transactions();
-		
+
 		testTransaction.addTransaction("Withdrawal", 10);
-		
+
 		assertEquals("Withdrawal: 10.0", testTransaction.getTransactionList().get(0));
 	}
-	
+
 	@Test
 	void testPrintTransaction() {
 		OutputStream out = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(out));
-		
+
 		Transactions testTransaction = new Transactions();
-		
+
 		testTransaction.addTransaction("Deposit", 10);
-		
+
 		testTransaction.printTransactions();
-		assertEquals("Transactions: \nDeposit: 10.0", out.toString().trim());
+		assertEquals("Transactions: \nDeposit: 10.0", out.toString().replace("\r\n", "\n").trim());
 	}
 }

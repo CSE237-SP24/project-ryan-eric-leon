@@ -68,6 +68,10 @@ public class AccountManagement {
 		return currentAccount;
 	}
 
+	public double getCurrentBalance() {
+		return currentAccount.getBalance();
+	}
+
 	// getAccount() is only used to get the receiver's account
 	// when trying to transfer money, so we shouldn't check password here
 	public BankAccount getAccount(String accountName) {
