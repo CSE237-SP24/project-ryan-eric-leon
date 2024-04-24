@@ -5,11 +5,11 @@ public class ProcessUserDisplay {
         System.out.println("Welcome our App! Here are the list of commands for our app, please let us know what do you want to do!");
     }
 
-    public void showOptions() {
+    public static void showOptions() {
         System.out.println("Commands: balance, deposit, withdraw, transfer, insert, switch, history, quit");
     }
     
-    public void optionsDescriptions() {
+    public static void optionsDescriptions() {
     	System.out.println("balance: checking the balance of your account.");
         System.out.println("deposit, withdraw: deposit/withdraw money to/from your account.");
         System.out.println("transfer: transfer money from your account to another account.");
@@ -19,7 +19,7 @@ public class ProcessUserDisplay {
         System.out.println("quit: terminating the commands.");
     }
 
-    public void ByeMessage() {
+    public static void ByeMessage() {
         System.out.println("Thanks for using our App. Have a good day and bye!");
     }
 
