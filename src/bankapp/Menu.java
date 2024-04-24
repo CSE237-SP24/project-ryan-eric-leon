@@ -77,6 +77,9 @@ public class Menu {
 		case "switch":
 			trySwitch();
 			break;
+		case "change_password":
+			tryChangePassword();
+			break;
 		case "history":
 			tryDisplayHistory();
 			break;
@@ -163,6 +166,20 @@ public class Menu {
 			processUserDisplay.showInfo("Switched to account: " + accountName);
 		} catch (IllegalArgumentException e) {
 			processUserDisplay.showError("Error switching accounts: " + e.getMessage());
+		}
+	}
+
+	private void tryChangePassword() {
+		processUserDisplay.showInfo("Please enter old account password (press enter for no password):");
+		String oldPassword = processUserInput.getInput();
+		processUserDisplay.showInfo("Please enter new account password (press enter for no password):");
+		String newPassword = processUserInput.getInput();
+
+		try {
+			accountManagement.changeAccountPassword(oldPassword, newPassword);
+			processUserDisplay.showInfo("Account password updated.");
+		} catch (IllegalArgumentException e) {
+			processUserDisplay.showError("Error changing password: " + e.getMessage());
 		}
 	}
 

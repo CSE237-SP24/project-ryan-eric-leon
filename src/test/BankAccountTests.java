@@ -144,6 +144,57 @@ class BankAccountTests {
 	}
 
 	@Test
+	// adding a password to an account is essentially setting a new password to
+	// replace the empty string password
+	void testAddPassword() {
+		String newPassword = "new-password";
+
+		BankAccount testAccount = new BankAccount();
+		testAccount.setPassword("", newPassword);
+
+		assertTrue(testAccount.checkPassword("new-password"));
+	}
+
+	@Test
+	// removing a password from an account is essentially setting a new empty string
+	// password to replace the original string password
+	void testRemovePassword() {
+		String oldPassword = "old-password";
+
+		BankAccount testAccount = new BankAccount(oldPassword);
+		testAccount.setPassword(oldPassword, "");
+
+		assertTrue(testAccount.getPassword().isEmpty());
+	}
+
+	@Test
+	void testChangePasswordCorrectOldPassword() {
+		String oldPassword = "old-password";
+		String newPassword = "new-password";
+
+		BankAccount testAccount = new BankAccount(oldPassword);
+		testAccount.setPassword(oldPassword, newPassword);
+
+		assertTrue(testAccount.checkPassword("new-password"));
+	}
+
+	@Test
+	void testChangePasswordWrongOldPassword() {
+		String oldPassword = "old-password";
+		String newPassword = "new-password";
+
+		BankAccount testAccount = new BankAccount(oldPassword);
+
+		try {
+			testAccount.setPassword("wrong-password", newPassword);
+			fail();
+		} catch (IllegalArgumentException e) {
+			// we expect to end up here, the old password doesn't match
+			assertTrue(true);
+		}
+	}
+
+	@Test
 	void testEmptyTransaction() {
 		BankAccount testAccount = new BankAccount();
 

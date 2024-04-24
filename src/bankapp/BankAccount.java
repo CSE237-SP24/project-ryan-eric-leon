@@ -31,6 +31,14 @@ public class BankAccount {
 		return this.password.equals(possiblePassword);
 	}
 
+	public void setPassword(String oldPassword, String newPassword) {
+		if (!checkPassword(oldPassword)) {
+			throw new IllegalArgumentException("Old password must match.");
+		}
+
+		this.password = newPassword;
+	}
+
 	// public method doing some work - lots of tests
 	public void deposit(double amount) {
 		if (amount < 0) {
